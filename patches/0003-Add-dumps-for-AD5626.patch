@@ -1,0 +1,98 @@
+From 4299437f3ee0f90ec0d6493c2f4652d2c4756bf3 Mon Sep 17 00:00:00 2001
+From: Teo Perisanu <Teo.Perisanu@analog.com>
+Date: Thu, 19 Mar 2020 09:50:55 +0200
+Subject: [PATCH 3/4] Add dumps for AD5626.
+
+Signed-off-by: Teo Perisanu <Teo.Perisanu@analog.com>
+---
+ spi/ad5626/README              |  34 +++++++++++++++++++++++++++++++++
+ spi/ad5626/ad5626_write_dac.sr | Bin 0 -> 11379 bytes
+ 2 files changed, 34 insertions(+)
+ create mode 100644 spi/ad5626/README
+ create mode 100644 spi/ad5626/ad5626_write_dac.sr
+
+diff --git a/spi/ad5626/README b/spi/ad5626/README
+new file mode 100644
+index 0000000..707241f
+--- /dev/null
++++ b/spi/ad5626/README
+@@ -0,0 +1,34 @@
++-------------------------------------------------------------------------------
++Analog Device AD5626
++-------------------------------------------------------------------------------
++
++This is a set of example captures of an Analog Devices AD5626 12-bit nanoDAC.
++
++Details:
++https://www.analog.com/media/en/technical-documentation/data-sheets/AD5626.pdf
++
++
++Logic analyzer setup
++--------------------
++
++The logic analyzer used was ADALM2000 (at 5MHz):
++
++  Probe       AD5626
++  -------------------
++  0           CLK
++  1           MOSI
++  2           CS#
++
++
++Probing
++-------
++
++The sigrok command line used was:
++
++  sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz -C 0-2 -o <file>
++
++ad5626_write_dac.sr
++--------------------
++
++m2kcli digital auto -c buffer_size=10000 nb_samples=5000000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz  -o ad5626_write_dac.sr -C 0-2
++
+diff --git a/spi/ad5626/ad5626_write_dac.sr b/spi/ad5626/ad5626_write_dac.sr
+new file mode 100644
+index 0000000000000000000000000000000000000000..dd8a8b5534b250a61839d2d1c09558f5badc31c8
+GIT binary patch
+literal 11379
+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
+JY8ljje*rzWSRMcX
+
+literal 0
+HcmV?d00001
+
+-- 
+2.17.1
+

@@ -1,0 +1,106 @@
+From cfb320359ec83c7f03264eba475471152da295b3 Mon Sep 17 00:00:00 2001
+From: Teo Perisanu <Teo.Perisanu@analog.com>
+Date: Thu, 19 Mar 2020 09:50:41 +0200
+Subject: [PATCH 2/4] Add dumps for LTC2422.
+
+Signed-off-by: Teo Perisanu <Teo.Perisanu@analog.com>
+---
+ spi/ltc2422/README              |  35 ++++++++++++++++++++++++++++++++
+ spi/ltc2422/ltc2422_read_adc.sr | Bin 0 -> 21196 bytes
+ 2 files changed, 35 insertions(+)
+ create mode 100644 spi/ltc2422/README
+ create mode 100644 spi/ltc2422/ltc2422_read_adc.sr
+
+diff --git a/spi/ltc2422/README b/spi/ltc2422/README
+new file mode 100644
+index 0000000..ae43d09
+--- /dev/null
++++ b/spi/ltc2422/README
+@@ -0,0 +1,35 @@
++-------------------------------------------------------------------------------
++Linear Technology Corporation LTC2422
++-------------------------------------------------------------------------------
++
++This is a set of example captures of LTC2422 20-bit ADC.
++
++Details:
++https://www.analog.com/media/en/technical-documentation/data-sheets/24212f.pdf
++
++
++Logic analyzer setup
++--------------------
++
++The logic analyzer used was ADALM2000 (at 5MHz):
++
++  Probe       LTC2422
++  -------------------
++  0           SKL
++  1           MISO
++  2           CS
++
++
++Probing
++-------
++
++The sigrok command line used was:
++
++  sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz -C 0-2 -o <file>
++
++ltc2422_read_adc.sr
++--------------------
++
++m2kcli digital auto -c buffer_size=10000 nb_samples=10000000 format=binary | sigrok-cli -i - -I binary:numchannels=16:samplerate=5mhz  -o ltc2422_read_adc.sr -C 0-2
++
++
+diff --git a/spi/ltc2422/ltc2422_read_adc.sr b/spi/ltc2422/ltc2422_read_adc.sr
+new file mode 100644
+index 0000000000000000000000000000000000000000..486e0e6cd0ed99a14f5efb3c836ddf9824e3c64b
+GIT binary patch
+literal 21196
+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
+
+literal 0
+HcmV?d00001
+
+-- 
+2.17.1
+
